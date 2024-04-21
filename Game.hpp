@@ -1,7 +1,10 @@
 #pragma once
+#include <fstream>
 
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
+#include "SDL2/SDL_ttf.h"
+
 #include "TextureManager.hpp"
 #include "GameObject.hpp"
 #include "Map.hpp"
@@ -10,14 +13,14 @@
 #include <iostream>
 #include <vector>
 
-class TextureManager;
+const int SCREEN_WIDTH = 1535;
+const int SCREEN_HEIGHT = 750;
+const int ROW = 15;
+const int COL = 15;
 
 class Game
 {
 public:
-
-    int SCREEN_WIDTH = 1536;
-    int SCREEN_HEIGHT = 768;
     int x_pos, y_pos;
 
     Game();
@@ -34,23 +37,31 @@ public:
 	void render();
 	void clean();
 	void Start();
-	void ButtonNonogram();
+	void Nonogram();
+	void LoadNgram(const char* filepath);
 
 	bool running() { return isRunning; }
-	//bool Nonogram() {return isNonogram;}
     static SDL_Renderer* renderer;
 
     SDL_Window* window;
 
     bool isRunning = true;
-    bool isNonogram = true;
+    bool isNonogram = false;
+
+    int srcRect_w,srcRect_h;
 
 private:
 
-    int srcRect_w,srcRect_h;
     int mouse_x, mouse_y;
 
-
     SDL_Event event;
+
+    int x_value = 32;
+
+    int _heart = 3;
+    int heartPosX = 60;
+    int heartPosY = 180;
+    int heartWidth = 42;
+    int heartHeight = 35;
 
 };

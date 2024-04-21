@@ -1,14 +1,19 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <vector>
+#include <string>
 
-#include "GameObject.hpp"
 #include "Map.hpp"
-#include "Game.hpp"
 
-const int START_X_GRID = 600;
-const int START_Y_GRID = 200;
+const int START_X_GRID = 300;
+const int START_Y_GRID = 225;
 const int PUZZLE_SIZE = 35;
+const int SG_X_ROW = 235;
+const int SG_X_COL = 270;
+const int SG_Y_ROW = 305;
+const int SG_Y_COL = 200;
 
 class GameNgram
 {
@@ -16,18 +21,25 @@ public:
     GameNgram();
     ~GameNgram();
 
-    void Ngram();
-    void handleEventNgram();
+    void LoadNgram(const char* filepath);
+    void handleEventNgramClickLeft(int &mouse_x, int &mouse_y);
+    void handleEventNgramClickRight(int &mouse_x, int &mouse_y);
+    void Suggest(int a[15][15]);
+    bool initTTF(SDL_Renderer* renderer);
+    void closeTTF();
+    void renderArrRow(SDL_Renderer* renderer, const vector<vector<int>>& arr);
+    void renderArrCol(SDL_Renderer* renderer, const vector<vector<int>>& arr);
 
-    int x_mouse,y_mouse;
+    vector<vector<int>> sg_row;
+    vector<vector<int>> sg_col;
 
-    int current[15][15];
+    vector<int> row_segments;
+    vector<int> col_segments;
+
 private:
-    SDL_Renderer* renderer;
-    SDL_Event event;
-
-    int pos_x, pos_y;
-
-    bool isQNgram = true;
-    int cnt=0;
+    TTF_Font *gFont = nullptr;
+    bool success = true;
+    int cnt;
+    int max_row = 0;
+    int max_col = 0;
 };
