@@ -197,6 +197,7 @@ void Game::render()
     if (isNonogram)
     {
         bgrn->Render();
+        Nonogram->Render();
         for (int i = 0; i < _heart; i++) {
             heart = new GameObject("Game Graphics/heart.png",heartPosX + i * (heartWidth + 5), heartPosY, heartWidth,heartHeight);
             heart->Update();
