@@ -4,7 +4,7 @@ Map::Map()
 {
     grass = TextureManager::LoadTexture("Game Graphics/grass/2.png");
 
-    LoadMap("file_map.txt");
+    LoadMap("Map/file_map.txt");
 
     src.x = src.y = 0;
     src.w = dest.w = 35;
